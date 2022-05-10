@@ -3,11 +3,11 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "real-estate": {
+    "housing": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
-          "strict": true
+          "strict": false
         }
       },
       "root": "",
@@ -17,16 +17,19 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/real-estate",
+            "outputPath": "dist/housing",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/data"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -68,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "real-estate:build:production"
+              "browserTarget": "housing:build:production"
             },
             "development": {
-              "browserTarget": "real-estate:build:development"
+              "browserTarget": "housing:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "real-estate:build"
+            "browserTarget": "housing:build"
           }
         },
         "test": {
@@ -98,9 +101,19 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "housing:build:production",
+            "firebaseProject": "everything-house",
+            "firebaseHostingSite": "everything-house"
+          }
         }
       }
     }
   },
-  "defaultProject": "real-estate"
+  "defaultProject": "housing"
 }

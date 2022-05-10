@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "everything-house"
+  },
+  "targets": {
+    "everything-house": {
+      "hosting": {
+        "housing": [
+          "everything-house"
+        ]
+      }
+    }
+  }
+}
